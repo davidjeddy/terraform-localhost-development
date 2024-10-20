@@ -6,34 +6,32 @@ Build Status, Code Coverage, PR stats/time frame, Project status, etc.
 
 ## Description
 
-Run this process to override Terraform/OpenTofu DNS for shared modules.
-
-## Purpose
-
-Tired of changing the `source` of deployment modules when doing development with published modules? This project as as a redirect and host of an IaC registry to a local file system.
+Tired of changing the `source` of deployment modules when doing development with published modules? This project acts as a proxy of the remote IaC registry to the localhost file system.
 
 ## Functionality
 
-Host a IaC module registry locally and redirect requests to it while running.
+Host a private local IaC module registry to enable easier module development.
 
-## Special Features
+## Request Flow
 
-Does this project have a special ability or functionality the competitors do not?
+- IaC Binary (Terraform/OpenTofu) -> localhost DNS resolution -> /etc/hosts -> localhost registry
 
 ## Table of Contents
 
 - [terraform-localhost-development](#terraform-localhost-development)
   - [Badges](#badges)
   - [Description](#description)
-  - [Purpose](#purpose)
   - [Functionality](#functionality)
-  - [Special Features](#special-features)
+  - [Request Flow](#request-flow)
   - [Table of Contents](#table-of-contents)
   - [Contributing](#contributing)
     - [Code of Conduct](#code-of-conduct)
     - [Contributing Guidelines](#contributing-guidelines)
     - [Development Documentation](#development-documentation)
   - [Requirements](#requirements)
+  - [Containerized](#containerized)
+  - [Non-containerized](#non-containerized)
+  - [Process](#process)
   - [How to](#how-to)
     - [Obtain](#obtain)
     - [Configure](#configure)
@@ -55,49 +53,65 @@ Please see [CONTRIBUTING_GUIDELINES.md](./CONTRIBUTING_GUIDELINES.md).
 
 ### Development Documentation
 
-Please see [DEVDOCS.md](./DEVDOCS.md).
+Please see [DEVELOPMENT.md](./DEVELOPMENT.md).
 
 ## Requirements
 
-- A list of items
-- required to run
-- the project (pre project cloning).
-- Do not include
-- project dependencies
-- installed via a
-- package manager such
-- as compose, npm, gem, etc.
+## Containerized
+
+## Non-containerized
+
+- [POSIX](https://en.wikipedia.org/wiki/POSIX) terminal
+- `sudo` privilege on a localhost
+  - MacOS will also require permissions to change system security settings
+- Internet access (for initial install only)
+- [Git](https://git-scm.com/)
+- [OCI Container compatible runtime](https://opencontainers.org/) ([containerd](https://containerd.io/), [Docker](https://www.docker.com/), [Podman](https://podman.io/), etc)
+  - Note: Helper scripts use [Podman](https://podman.io/)
+  - Node / NPM for TLS validation web server
+- IaC tool ([Terraform](https://www.terraform.io/)/[OpenTofu](https://opentofu.org/))
+
+## Process
+
+- `./libs/bash/install.sh`
+- Edit `./libs/bash/config.sh`
+- `./libs/bash/build.sh`
+- `./libs/bash/start.sh`
+
+- `./libs/bash/stop.sh`
 
 ## How to
 
 ### Obtain
 
 ```sh
-git clone ...
+git clone https://github.com/davidjeddy/terraform-localhost-development.git
 ```
 
 ### Configure
 
 ```sh
-echo -e "Some commands\n
-to configure\n
-the project.\n"
+# using podman here, but any OCI process should be compatible
+podman run ...
 ```
 
 ### Run
 
+Create local self signed TLS certificate using mkcert
+
 ```sh
-echo -e "The commands\n
-to run\n
-the project."
+```
+
+Launch the proxy service via container command, using podman here, but any OCI process should be compatible.
+
+```sh
+podman 
 ```
 
 ### Stop
 
 ```sh
-echo -e "You guessed it\n
-the command to stop
-the project.\n"
+./libs/bash/stop.sh
 ```
 
 ## Versioning

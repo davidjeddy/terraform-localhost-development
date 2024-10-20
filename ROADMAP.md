@@ -6,23 +6,16 @@ Documentation or Link to resources that contain the production planning with fut
 - [GitLab Project Roadmap](https://docs.gitlab.com/ee/user/group/roadmap/)
 - [..or other popular Product Roadmap resources](https://www.actitime.com/project-management/roadmap-software/)
 
-## Unite all contributor efforts
+## Road to One-Oh
 
-- [x] Create central org, and move across all-contributors, all-contributors-cli, all-contributors-atom and all-contributors-bot
-- [x] Add Branding, central Communication Places
-- [x] Launch website and centralize documentation
-
-## Establish an All Contributors community
-
-- [ ] Establish a check-in ritual
-- [ ] Establish a culture of gratitude ritual 
-- [ ] Develop more proactive information-sharing practices
-- [ ] To keep engaged: sending regular (weekly) updates about the recent events related to the project 
-- [ ] Develop more open and inclusive decision-making processes
-
-## Building an All Contributors presence and visibility
-
-- [x] Switch to .io from .com and promote
-- [ ] Create a video
-- [ ] Improve SEO
-- [ ] Add all contributors to email distribution
+- [ ] [Support all module source types](https://developer.hashicorp.com/terraform/language/modules/sources):
+  - Local paths - ok, this one is not needed :)
+  - Terraform Registry
+  - GitHub
+  - Bitbucket
+  - Generic Git, Mercurial repositories
+  - HTTP URLs
+  - S3 buckets
+  - GCS buckets
+  - Modules in Package Sub-directories
+- [ ] Convert node and citizen to containerized services
