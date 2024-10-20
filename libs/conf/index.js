@@ -9,13 +9,23 @@ var options = {
     key: fs.readFileSync(".tmp/localhost-key.pem"),
 };
 
+// webserver TLS healthcheck endpoint
 https.createServer(options, function (req, res) {
-    // res.writeHead(200);
-    // res.end("localhost TLS certificate working as expected.\n");
-    proxy.web(req, res, {
-        target: 'http://localhost:3000'
-    });
+    res.writeHead(200);
+    if( req.url == "/" ) {
+        proxy.web(req, res, {
+            target: 'http://localhost/:3000'
+        });
+    } else if( req.url == "/tls/health" ) {
+        res.end("localhost TLS encryption working as expected.\n");
+    } else if( req.url == "/node/health" ) {
+        res.end("Node webserver working as expected.\n");
+    } else if( req.url == "/citizen/health" ) {
+        proxy.web(req, res, {
+            target: 'http://localhost/health:3000'
+        });
+    } else {
+        res.end("Endpoint not found.\n");
+    }
 }).listen(443)
 
-// TODO redirect request to localhost:3000; where citizen
-// TODO add request logging stdout / file

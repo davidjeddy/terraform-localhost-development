@@ -25,6 +25,7 @@ Host a private local IaC module registry to enable easier module development.
   - [Request Flow](#request-flow)
   - [Table of Contents](#table-of-contents)
   - [Contributing](#contributing)
+  - [Components](#components)
     - [Code of Conduct](#code-of-conduct)
     - [Contributing Guidelines](#contributing-guidelines)
     - [Development Documentation](#development-documentation)
@@ -42,6 +43,15 @@ Host a private local IaC module registry to enable easier module development.
   - [Additional Information](#additional-information)
 
 ## Contributing
+
+## Components
+
+- Bash
+- Citizen
+- Curl
+- Git
+- mkcert
+- Node
 
 ### Code of Conduct
 
