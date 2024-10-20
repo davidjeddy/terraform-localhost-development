@@ -2,7 +2,10 @@
 
 set -eo pipefail
 
-# configuration
+# shellcheck disable=SC1091
+source "./config.sh" || exiti 1
+
+# logic 
 
 if [[ ! $1 ]]
 then
@@ -12,6 +15,7 @@ fi
 
 declare MODULE_ROOT_DIR
 MODULE_ROOT_DIR="$1"
+export MODULE_ROOT_DIR
 
 # logic
 
@@ -20,10 +24,6 @@ MODULE_ROOT_DIR="$1"
 # Iterate a path loading each found module
 
 cd .tmp/citizen || exit 1
-
-declare CITIZEN_ADDR
-CITIZEN_ADDR="https://localhost:3000"
-export CITIZEN_ADDR
 
 MODULE_ROOT_DIR="/Users/david/Projects/david_eddy/game-server"
 for DIR in $MODULE_ROOT_DIR
@@ -35,3 +35,11 @@ do
         citizen module localhost "$DIR" aws "$TAG"
     done
 done
+
+PATH="/Users/david/Projects/david_eddy/terraform-localhost-development/.tmp/citizen/bin:$PATH"
+echo "$PATH"
+which citizen
+source "/Users/david/Projects/david_eddy/terraform-localhost-development/libs/bash/config.sh" || exit 1
+NODE_EXTRA_CA_CERTS=""
+
+citizen module testing terraform-aws-log-exporter aws 1.1.1

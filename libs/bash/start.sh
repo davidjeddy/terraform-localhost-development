@@ -16,4 +16,3 @@ node libs/conf/index.js
 cd .tmp/citizen
 NODE_EXTRA_CA_CERTS="" ./bin/citizen server --verbose
 cd ../../
-

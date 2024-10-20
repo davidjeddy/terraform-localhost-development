@@ -22,7 +22,7 @@ printf "INFO: ARCH is %s\n" "$ARCH"
 # -----
 
 declare CITIZEN_ADDR
-CITIZEN_ADDR="localhost"
+CITIZEN_ADDR="https://localhost"
 export CITIZEN_ADDR
 printf "INFO: CITIZEN_ADDR is %s\n" "$CITIZEN_ADDR"
 

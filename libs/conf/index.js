@@ -12,7 +12,7 @@ https.createServer(options, function (req, res) {
     res.writeHead(200);
     if( req.url == "/" ) {
         proxy.web(req, res, {
-            target: 'http://localhost/:3000'
+            target: 'http://localhost:3000'
         });
     } else if( req.url == "/tls/health" ) {
         res.end("localhost TLS encryption working as expected.\n");
