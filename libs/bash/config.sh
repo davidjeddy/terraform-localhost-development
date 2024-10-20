@@ -41,12 +41,12 @@ CITIZEN_STORAGE="file"
 export CITIZEN_STORAGE
 printf "INFO: CITIZEN_STORAGE is %s\n" "$CITIZEN_STORAGE"
 
-# declare NODE_EXTRA_CA_CERTS
-# NODE_EXTRA_CA_CERTS=".tmp/localhost.pem"
+declare NODE_EXTRA_CA_CERTS
+NODE_EXTRA_CA_CERTS=".tmp/localhost.pem"
 # TODO git sub-module citizen to use the following:
 #NODE_EXTRA_CA_CERTS="$(git rev-parse --show-toplevel)/.tmp/localhost.pem"
-# export NODE_EXTRA_CA_CERTS
-# printf "INFO: NODE_EXTRA_CA_CERTS is %s\n" "$NODE_EXTRA_CA_CERTS"
+export NODE_EXTRA_CA_CERTS
+printf "INFO: NODE_EXTRA_CA_CERTS is %s\n" "$NODE_EXTRA_CA_CERTS"
 
 declare NODE_ENV
 NODE_ENV="development"

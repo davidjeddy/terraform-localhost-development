@@ -10,7 +10,6 @@ source "./config.sh" || exiti 1
 cd .tmp/citizen || exit 1
     npm install
     npm run client
-    npm run build
     npm run build:macos_x86
 cd ../../ || exit 1
 
