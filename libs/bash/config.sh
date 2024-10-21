@@ -22,7 +22,7 @@ printf "INFO: ARCH is %s\n" "$ARCH"
 # -----
 
 declare CITIZEN_ADDR
-CITIZEN_ADDR="https://localhost"
+CITIZEN_ADDR="registry.localhost.com"
 export CITIZEN_ADDR
 printf "INFO: CITIZEN_ADDR is %s\n" "$CITIZEN_ADDR"
 
@@ -42,9 +42,8 @@ export CITIZEN_STORAGE
 printf "INFO: CITIZEN_STORAGE is %s\n" "$CITIZEN_STORAGE"
 
 declare NODE_EXTRA_CA_CERTS
-NODE_EXTRA_CA_CERTS=".tmp/localhost.pem"
-# TODO git sub-module citizen to use the following:
-#NODE_EXTRA_CA_CERTS="$(git rev-parse --show-toplevel)/.tmp/localhost.pem"
+# NODE_EXTRA_CA_CERTS="$(git rev-parse --show-toplevel)/.tmp/localhost.pem" # TODO git sub-module citizen to use the following
+NODE_EXTRA_CA_CERTS=".tmp/$CITIZEN_ADDR-key.pem"
 export NODE_EXTRA_CA_CERTS
 printf "INFO: NODE_EXTRA_CA_CERTS is %s\n" "$NODE_EXTRA_CA_CERTS"
 
@@ -54,7 +53,9 @@ export NODE_ENV
 printf "INFO: NODE_ENV is %s\n" "$NODE_ENV"
 
 declare NODE_DEBUG
-NODE_DEBUG="" #http,http-proxy,fs # only if needed
+# only if needed
+NODE_DEBUG="http,http-proxy,fs"
+# NODE_DEBUG="" 
 export NODE_DEBUG
 printf "INFO: NODE_DEBUG is %s\n" "$NODE_DEBUG"
 
@@ -68,4 +69,13 @@ printf "INFO: PLATFORM is %s\n" "$PLATFORM"
 if [[ ! -d ".tmp" ]]
 then
     mkdir -p ".tmp/"
+fi
+
+# -----
+
+if [[ $(cat /etc/hosts) != *"$CITIZEN_ADDR"* ]]
+then
+    printf "INFO: Adding record to /etc/hosts\n"
+    sudo echo "127.0.0.1    $CITIZEN_ADDR" | sudo tee -a /etc/hosts > /dev/null
+    tail /etc/hosts
 fi

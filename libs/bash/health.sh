@@ -3,11 +3,11 @@
 set -eo pipefail
 
 # shellcheck disable=SC1091
-source ./config.sh || exiti 1
+source ./libs/bash/config.sh || exiti 1
 
 # Citizen
-curl --location --verbose https://localhost/citizen/health
+curl --location https://registry.localhost.com/citizen/health && printf "\n"
 # Node
-curl --location --verbose https://localhost/node/health
+curl --location https://registry.localhost.com/node/health
 # TLS
-curl --location --verbose https://localhost/tls/health
+curl --location https://registry.localhost.com/tls/health

@@ -9,13 +9,16 @@ Documentation or Link to resources that contain the production planning with fut
 ## Road to One-Oh
 
 - [ ] [Support all module source types](https://developer.hashicorp.com/terraform/language/modules/sources):
-  - Local paths - ok, this one is not needed :)
-  - Terraform Registry
-  - GitHub
-  - Bitbucket
-  - Generic Git, Mercurial repositories
-  - HTTP URLs
-  - S3 buckets
-  - GCS buckets
-  - Modules in Package Sub-directories
+  - [ ] Local paths - ok, this one is not needed :)
+  - [ ] Terraform Registry
+  - [ ] Git, GitHub, and Bitbucket
+  - [ ] Mercurial repositories
+  - [ ] HTTP URLs
+  - [ ] S3 buckets
+  - [ ] GCS buckets
+  - [ ] Modules in Package Sub-directories
+- [X] Use git sub-module for Citizen version control
 - [ ] Convert node and citizen to containerized services
+- [ ] Generate markdown from README.adoc to README.md as part of a release build
+  - [ ] ./github/release.yaml
+  - [ ] [pandoc](https://github.com/jgm/pandoc)
