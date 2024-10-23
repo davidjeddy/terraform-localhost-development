@@ -31,21 +31,25 @@ CITIZEN_DATABASE_TYPE="sqlite"
 export CITIZEN_DATABASE_TYPE
 printf "INFO: CITIZEN_DATABASE_TYPE is %s\n" "$CITIZEN_DATABASE_TYPE"
 
-declare CITIZEN_STORAGE_PATH
-CITIZEN_STORAGE_PATH="./storage"
-export CITIZEN_STORAGE_PATH
-printf "INFO: CITIZEN_STORAGE_PATH is %s\n" "$CITIZEN_STORAGE_PATH"
-
 declare CITIZEN_STORAGE
 CITIZEN_STORAGE="file"
 export CITIZEN_STORAGE
 printf "INFO: CITIZEN_STORAGE is %s\n" "$CITIZEN_STORAGE"
 
-declare NODE_EXTRA_CA_CERTS
-# NODE_EXTRA_CA_CERTS="$(git rev-parse --show-toplevel)/.tmp/localhost.pem" # TODO git sub-module citizen to use the following
-NODE_EXTRA_CA_CERTS=".tmp/$CITIZEN_ADDR-key.pem"
-export NODE_EXTRA_CA_CERTS
-printf "INFO: NODE_EXTRA_CA_CERTS is %s\n" "$NODE_EXTRA_CA_CERTS"
+declare CITIZEN_STORAGE_PATH
+CITIZEN_STORAGE_PATH="$(pwd)/.tmp"
+export CITIZEN_STORAGE_PATH
+printf "INFO: CITIZEN_STORAGE_PATH is %s\n" "$CITIZEN_STORAGE_PATH"
+
+declare CITIZEN_DATABASE_URL
+CITIZEN_DATABASE_URL="file:./citizen.db"
+export CITIZEN_DATABASE_URL
+printf "INFO: CITIZEN_DATABASE_URL is %s\n" "$CITIZEN_DATABASE_URL"
+
+declare DEBUG
+DEBUG="citizen:*"
+export DEBUG
+printf "INFO: DEBUG is %s\n" "$DEBUG"
 
 declare NODE_ENV
 NODE_ENV="development"
@@ -63,6 +67,11 @@ declare PLATFORM
 PLATFORM="$(uname | awk '{print tolower($0)}')"
 export PLATFORM
 printf "INFO: PLATFORM is %s\n" "$PLATFORM"
+
+declare VERBOSE_DB_LOG
+VERBOSE_DB_LOG="TRACE"
+export VERBOSE_DB_LOG
+printf "INFO: VERBOSE_DB_LOG is %s\n" "$VERBOSE_DB_LOG"
 
 # -----
 

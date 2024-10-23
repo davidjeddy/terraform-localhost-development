@@ -9,15 +9,15 @@ source ./libs/bash/config.sh || exiti 1
 
 cd citizen || exit 1
     npm install
-    npm run client
+    npm run client:sqlite
     npm run build:macos_x86
 cd ../ || exit 1
 
 ## mkcert  - https://github.com/FiloSottile/mkcert
 
-echo "INFO: Create and Install localhost TLS certifcate..."
+echo "INFO: Create and Install TLS certifcate..."
 cd .tmp/ || exit 1
-    mkcert "registry.localhost.com"
+    mkcert "$CITIZEN_ADDR"
     mkcert -install
 cd ../ || exit 1
 

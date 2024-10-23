@@ -9,11 +9,9 @@ source ./libs/bash/config.sh || exiti 1
 
 ## node
 
-echo "INFO: Starting localhost NodeJS https server ..."
-node libs/conf/index.js
+echo "INFO: Starting NodeJS https server ..."
+NODE_EXTRA_CA_CERTS=".tmp/$CITIZEN_ADDR-key.pem" node ./libs/conf/index.js
 
-echo "INFO: Starting localhost Citizen IaC registry ..."
+echo "INFO: Starting Citizen IaC registry ..."
 # shellcheck disable=SC1091
-cd citizen
-    NODE_EXTRA_CA_CERTS="" ./bin/citizen server --verbose
-cd ../
+./citizen/bin/citizen server --verbose

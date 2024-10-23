@@ -10,15 +10,10 @@ var proxy = httpProxy.createProxyServer({});
 
 https.createServer(options, function (req, res) {
     res.writeHead(200);
-    if( req.url == "/" ) {
-        proxy.web(req, res, {
-            // TODO read from ENV VAR
-            target: 'http://registry.localhost.com:3000'
-        });
-    } else if( req.url == "/tls/health" ) {
-        res.end("localhost TLS encryption working as expected.\n");
+    if( req.url == "/tls/health" ) {
+        res.end("TLS encryption working as expected.\n");
     } else if( req.url == "/node/health" ) {
-        res.end("localhost Node webserver working as expected.\n");
+        res.end("Node webserver working as expected.\n");
     } else if( req.url == "/citizen/health" ) {
         // better way to handle preventing the url path from being post-fixed to the target domain?
         req.url = ""
@@ -26,6 +21,9 @@ https.createServer(options, function (req, res) {
             target: "http://registry.localhost.com:3000/health"
         });
     } else {
-        res.end("Endpoint not found.\n");
+        proxy.web(req, res, {
+            // TODO read from ENV VAR
+            target: 'http://registry.localhost.com:3000'
+        });
     }
 }).listen(443)

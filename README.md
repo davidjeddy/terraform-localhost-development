@@ -6,7 +6,7 @@ Build Status, Code Coverage, PR stats/time frame, Project status, etc.
 
 ## Description
 
-Tired of changing the `source` of deployment modules when doing development with published modules? This project acts as a proxy of the remote IaC registry to the localhost file system.
+Tired of changing the `source` of deployment modules when doing development with published or shared modules? This project acts as a proxy of the remote IaC registry to the file system.
 
 ## Functionality
 
@@ -14,7 +14,7 @@ Host a private local IaC module registry to enable easier module development.
 
 ## Request Flow
 
-- IaC Binary (Terraform/OpenTofu) -> localhost DNS resolution -> /etc/hosts -> localhost registry
+- IaC Binary (Terraform/OpenTofu) -> DNS resolution -> /etc/hosts -> IaC registry
 
 ## Table of Contents
 
